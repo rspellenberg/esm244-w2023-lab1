@@ -16,3 +16,29 @@ library(tmap)
 #knitr references all subsequent chunks
 ```
 
+### Read in data
+
+```{r}
+sf_trees <- read_csv(here('data', 'sf_trees', 'sf_trees.csv'))
+
+#read_csv is in the tidyverse package - it is the new and improved version - generally preferred
+
+#exploratory commands in console: summary and names, also sf_trees %>% group_by(legal_status) %>% summarize(tree_count = n())
+
+top_5_status <- sf_trees %>% 
+  group_by(legal_status) %>% 
+  summarize(tree_count = n()) %>% 
+  slice_max(tree_count, n = 5) %>% 
+  arrange(-tree_count)
+
+#slice_max = find the values of this variable that are the maximum and just keep the top 5
+
+ggplot(data = top_5_status, aes(x = fct_reorder(legal_status, tree_count),
+                                y = tree_count)) +
+  geom_col() +
+  labs(y = 'Tree Count', x= 'Legal Status') +
+  coord_flip() +
+  theme_minimal()
+```
+
+
