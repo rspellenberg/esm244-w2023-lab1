@@ -1,0 +1,18 @@
+---
+title: "lab1"
+author: "R. Spellenberg"
+date: "2023-01-12"
+output: html_document
+---
+
+```{r setup, include=TRUE, echo=TRUE, warning=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+library(tidyverse)
+library(here)
+library(sf)
+library(tmap)
+
+#first line references this chunk
+#knitr references all subsequent chunks
+```
+
